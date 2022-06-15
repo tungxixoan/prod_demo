@@ -1,6 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-function HomeView({navigation}) {
+function HomeView({navigation, route}) {
+  
+  console.log(route)
   return (
     <View style={styles.container}>
       <Text>Email:</Text>
