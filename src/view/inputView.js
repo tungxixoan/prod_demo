@@ -7,27 +7,34 @@ import {
   View,
 } from 'react-native';
 
-function InputView({navigation}) {
-  // const [mail, setMail] = useState('');
-  // const [name, setName] = useState('');
+import {useDispatch, useSelector} from 'react-redux';
+import {updateInput} from '../redux/actions/updateAction';
 
-  // const handleSubmit = ()=>{
-  //   const info = {
-  //     mail: mail,
-  //     name: name,
-  //   };
-  //   navigation.navigate('HomeTaps', {info:info});
-  //   setMail('')
-  //   setName('')
-  // }
+function InputView({navigation}) {
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const dispatch = useDispatch()
+
+  const handleSubmit = () =>{
+    dispatch(updateInput(email, name))
+    navigation.navigate('Home')
+  }
 
   return (
     <View style={styles.container}>
-      <TextInput style={styles.input} placeholder="Email"></TextInput>
-      <TextInput style={styles.input} placeholder="Full Name"></TextInput>
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        onChangeText={setEmail}
+        value={email}></TextInput>
+      <TextInput
+        style={styles.input}
+        placeholder="Full Name"
+        onChangeText={setName}
+        value={name}></TextInput>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Home')}>
+        onPress={handleSubmit}>
         <Text style={styles.textSubmit}>Submit</Text>
       </TouchableOpacity>
     </View>

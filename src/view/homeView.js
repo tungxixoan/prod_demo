@@ -13,9 +13,9 @@ function HomeView({navigation}) {
   const info = useSelector(state => state.personalInfo);
   const [email, setEmail] = useState('');
   const dispatch = useDispatch();
-  useEffect(() => {
+  // useEffect(() => {
     console.log('info: ', info);
-  });
+  // });
   return (
     <View style={styles.container}>
       <View
