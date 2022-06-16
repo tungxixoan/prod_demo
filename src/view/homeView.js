@@ -10,11 +10,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import {updateEmail} from '../redux/actions/updateAction';
 
 function HomeView({navigation}) {
-  const info = useSelector(state => state.personalInfo);
+  const infos = useSelector(state => state.personalInfo);
   const [email, setEmail] = useState('');
   const dispatch = useDispatch();
   // useEffect(() => {
-    console.log('info: ', info);
+    console.log('info: ', infos);
   // });
   return (
     <View style={styles.container}>
@@ -37,10 +37,15 @@ function HomeView({navigation}) {
         </TouchableOpacity>
       </View>
       <View style={{marginBottom: 20}}>
-        <Text>Email:{info.email}</Text>
+        {infos.map=((info, index)=>{
+          return (
+            <Text> Email: {info.mail}; Name: {info.name}; Address: {info.address}; Phone: {info.phone} </Text>
+          );
+        })}
+        {/* <Text>Email:{info.email}</Text>
         <Text>Name:{info.name}</Text>
         <Text>Address:{info.address}</Text>
-        <Text>Phone:{info.phone}</Text>
+        <Text>Phone:{info.phone}</Text> */}
       </View>
       <View style={{alignItems: 'center'}}>
         <TextInput

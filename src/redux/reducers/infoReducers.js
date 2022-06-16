@@ -4,12 +4,12 @@ export const CAP_NHAP_ADDRESS = 'CAP_NHAP_ADDRESS';
 export const CAP_NHAP_PHOME = 'CAP_NHAP_PHOME';
 export const UPDATE_INPUT = 'UPDATE_INPUT';
 
-const initialState = {
+const initialState = [{
   email: '',
   name: '',
   address: '',
   phone: 0,
-};
+}];
 
 export default function actionForReducer(state = initialState, payload) {
   switch (payload.type) {
@@ -22,7 +22,7 @@ export default function actionForReducer(state = initialState, payload) {
     case CAP_NHAP_PHOME:
       return {...state, phone: payload.phone};
     case UPDATE_INPUT:
-      return {...state, email: payload.email, name: payload.name};
+      return [...state,{email: payload.email, name: payload.name}];
     default:
       return state;
   }

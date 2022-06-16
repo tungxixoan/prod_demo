@@ -1,7 +1,7 @@
 import{combineReducers} from 'redux'
-import info from './infoReducers'
+import infos from './infoReducers'
 const reducers = combineReducers({
-    personalInfo: info
+    personalInfo: infos
 });
 
 export default (state, action) => reducers(state, action)
