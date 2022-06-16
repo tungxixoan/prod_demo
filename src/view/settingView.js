@@ -1,12 +1,16 @@
 import React from "react";
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
-function SettingView(){
+import {View, Text, StyleSheet,TextInput, TouchableOpacity} from 'react-native'
+function SettingView({navigation}){
     return <View style={styles.container}>
         <Text>Setting View</Text>
-
-
-        <TouchableOpacity style={styles.button}>
-        <Text style={styles.textSubmit}>Submit</Text>
+        
+        <TouchableOpacity style={styles.button}
+        onPress={() => navigation.goBack()}>
+        <Text style={styles.textSubmit}>Go Back</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} 
+      onPress={() => navigation.popToTop()}>
+        <Text style={styles.textSubmit}>Go Input</Text>
       </TouchableOpacity>
     </View>
 }

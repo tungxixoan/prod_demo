@@ -8,41 +8,26 @@ import {
 } from 'react-native';
 
 function InputView({navigation}) {
-  const [mail, setMail] = useState('');
-  const [name, setName] = useState('');
-  const[infors, setInfors] = useState([])
-  
-  const handleSubmit = ()=>{
-    setInfors([
-      ...infors,
-      {
-        mail: mail,
-        name: name,
-      },
-    ]);
-    console.log({infors});
-    navigation.navigate('HomeTaps', {infors:infors})
-    setMail('')
-    setName('')
-    
-  }
+  // const [mail, setMail] = useState('');
+  // const [name, setName] = useState('');
 
+  // const handleSubmit = ()=>{
+  //   const info = {
+  //     mail: mail,
+  //     name: name,
+  //   };
+  //   navigation.navigate('HomeTaps', {info:info});
+  //   setMail('')
+  //   setName('')
+  // }
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        onChangeText={setMail}
-        value={mail}></TextInput>
-      <TextInput
-        style={styles.input}
-        onChangeText={setName}
-        placeholder="Full Name"
-        value={name}></TextInput>
+      <TextInput style={styles.input} placeholder="Email"></TextInput>
+      <TextInput style={styles.input} placeholder="Full Name"></TextInput>
       <TouchableOpacity
         style={styles.button}
-        onPress={handleSubmit}>
+        onPress={() => navigation.navigate('Home')}>
         <Text style={styles.textSubmit}>Submit</Text>
       </TouchableOpacity>
     </View>

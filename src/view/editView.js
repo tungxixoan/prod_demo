@@ -1,8 +1,34 @@
-import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet,TextInput, TouchableOpacity} from 'react-native';
 function EditView({navigation}) {
+  const [mail, setMail] = useState('');
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  const [phone, setPhone] = useState('');
+  
+
   return (
     <View style={styles.container}>
+     <TextInput
+        style={styles.input}
+        placeholder="Email"
+        onChangeText={setMail}
+        value={mail}></TextInput>
+      <TextInput
+        style={styles.input}
+        onChangeText={setName}
+        placeholder="Full Name"
+        value={name}></TextInput>
+         <TextInput
+        style={styles.input}
+        placeholder="Adress"
+        onChangeText={setAddress}
+        value={address}></TextInput>
+      <TextInput
+        style={styles.input}
+        onChangeText={setPhone}
+        placeholder="Phone Number"
+        value={phone}></TextInput>
       <Text>Edit View</Text>
       <TouchableOpacity
         style={styles.button}
