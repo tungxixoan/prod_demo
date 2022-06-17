@@ -1,21 +1,15 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {updateEmail} from '../redux/actions/updateAction';
 
 function HomeView({navigation}) {
   const infos = useSelector(state => state.personalInfo);
-  const [email, setEmail] = useState('');
   const dispatch = useDispatch();
-  // useEffect(() => {
-    console.log('info: ', infos);
-  // });
+  const handleEdit = (index) =>{
+    navigation.navigate('Edit', {index: index})
+
+  }
+  // console.log('infos: ', infos);
   return (
     <View style={styles.container}>
       <View
@@ -27,37 +21,38 @@ function HomeView({navigation}) {
         }}>
         <TouchableOpacity
           style={styles.button}
+          onPress={() => navigation.goBack()}>
+          <Text style={styles.textSubmit}> Go Add</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
           onPress={() => navigation.navigate('Setting')}>
           <Text style={styles.textSubmit}>Go Setting</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.goBack()}>
-          <Text style={styles.textSubmit}> Go Back</Text>
-        </TouchableOpacity>
       </View>
       <View style={{marginBottom: 20}}>
-        {infos.map=((info, index)=>{
+        {infos.map((info, index) => {
           return (
-            <Text> Email: {info.mail}; Name: {info.name}; Address: {info.address}; Phone: {info.phone} </Text>
+            <View
+              key={index}
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                width: 350,
+                marginLeft: 30,
+                alignItems: 'center',
+              }}>
+              <Text style={{flex: 6}}>
+                Email: {info.email} - Name: {info.name} - Address: {info.address} - Phone: {info.phone}
+              </Text>
+              <TouchableOpacity style={{flex: 1}} onPress={() => handleEdit(index)}>
+                <Image
+                  style={{height: 20, width: 20}}
+                  source={require('../images/edit_icon.png')}></Image>
+              </TouchableOpacity>
+            </View>
           );
         })}
-        {/* <Text>Email:{info.email}</Text>
-        <Text>Name:{info.name}</Text>
-        <Text>Address:{info.address}</Text>
-        <Text>Phone:{info.phone}</Text> */}
-      </View>
-      <View style={{alignItems: 'center'}}>
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          onChangeText={setEmail}
-          value={email}></TextInput>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => dispatch(updateEmail(email))}>
-          <Text style={styles.textSubmit}>Update</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useRef,useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -20,9 +20,23 @@ function InputView({navigation}) {
     navigation.navigate('Home')
   }
 
+  const textRef = useRef()
+
+  useEffect(()=>{
+    const unsubscrise = navigation.addListener('focus', () =>{
+        setEmail('')
+        setName('')
+       textRef.current.focus();
+    });
+    return unsubscrise;
+
+    }, [navigation]
+  )
+
   return (
     <View style={styles.container}>
       <TextInput
+        ref={textRef}
         style={styles.input}
         placeholder="Email"
         onChangeText={setEmail}
