@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import { deleteInfo } from '../redux/actions/updateAction';
 
 function HomeView({navigation}) {
   const infos = useSelector(state => state.personalInfo);
@@ -8,6 +9,9 @@ function HomeView({navigation}) {
   const handleEdit = index => {
     navigation.navigate('Edit', {index: index});
   };
+  const handleDelete = index => {
+    dispatch(deleteInfo(index))
+  }
   // console.log('infos: ', infos);
   return (
     <View style={styles.container}>
@@ -59,7 +63,11 @@ function HomeView({navigation}) {
                   style={{height: 20, width: 20}}
                   source={require('../images/edit_icon.png')}></Image>
               </TouchableOpacity>
-              
+              <TouchableOpacity>
+                <Image
+                  style={{height: 20, width: 20}}
+                  source={require('../images/delete_icon.png')}></Image>
+              </TouchableOpacity>
             </View>
           );
         })}

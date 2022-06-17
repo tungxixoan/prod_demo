@@ -5,18 +5,13 @@ export const CAP_NHAP_PHOME = 'CAP_NHAP_PHOME';
 export const UPDATE_INPUT = 'UPDATE_INPUT';
 export const UPDATE_INFO = 'UPDATE_INFO';
 export const EDIT_INFO = 'EDIT_INFO';
+export const DELETE_INFO = 'DELETE_INFO'
 const initialState = [];
 
 export default function actionForReducer(state = initialState, payload) {
   switch (payload.type) {
     case CAP_NHAP_EMAIL:
       return {...state, email: payload.email};
-    case CAP_NHAP_NAME:
-      return {...state, name: payload.name};
-    case CAP_NHAP_ADDRESS:
-      return {...state, address: payload.address};
-    case CAP_NHAP_PHOME:
-      return {...state, phone: payload.phone};
     case UPDATE_INPUT:
       return [...state, {email: payload.email, name: payload.name}];
     case UPDATE_INFO:
@@ -41,6 +36,10 @@ export default function actionForReducer(state = initialState, payload) {
       ];
       
     }
+    case DELETE_INFO:{
+      state[payload.index].splice(1,1)
+    }
+    return [...state]
     default:
       return state;
   }
