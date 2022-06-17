@@ -5,7 +5,7 @@ export const updateEmail = email => async dispatch => {
     await new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve();
-      }, 1000);
+      }, 500);
     });
     dispatch({
       type: CAP_NHAP_EMAIL,
@@ -19,7 +19,7 @@ export const updateInput = (email, name) => async dispatch => {
     await new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve();
-      }, 1000);
+      }, 500);
     });
     dispatch({
       type: UPDATE_INPUT,
@@ -34,7 +34,7 @@ export const updateInfo = (email, name, address, phone) => async dispatch => {
     await new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve();
-      }, 1000);
+      }, 500);
     });
     dispatch({
       type: UPDATE_INFO,
