@@ -1,4 +1,4 @@
-import { CAP_NHAP_EMAIL, UPDATE_INFO, EDIT_INFO } from './../reducers/infoReducers';
+import { CAP_NHAP_EMAIL, UPDATE_INFO, EDIT_INFO, DELETE_INFO } from './../reducers/infoReducers';
 import {UPDATE_INPUT} from './../reducers/infoReducers';
 export const updateEmail = email => async dispatch => {
   try {
@@ -51,7 +51,7 @@ export const editInfo = (index, email, name, address, phone) => async dispatch =
         await new Promise ((resolve, reject) => {
             setTimeout(() => {
                 resolve();
-            }, 1000);
+            }, 500);
             // console.log('edit info: ', index, email, name, address, phone )
         });
         dispatch({
@@ -65,4 +65,20 @@ export const editInfo = (index, email, name, address, phone) => async dispatch =
     } catch (error) {
         
     }
+}
+
+export const deleteInfo = (index) => async dispatch => {
+  try {
+await new Promise ((resolve, reject)=> {
+  setTimeout(() => {
+    resolve();
+  },500)
+});
+dispatch({
+  type: DELETE_INFO,
+  index: index,
+})
+  } catch (error) {
+    
+  }
 }
