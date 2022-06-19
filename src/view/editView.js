@@ -38,7 +38,7 @@ function EditView({ navigation, route }) {
   // console.log(mail, name);
   return (
     <View style={styles.container}>
-      <View style={{flex: 1, backgroundColor: 'white', width: '100%' , paddingHorizontal: 25,
+      <View style={{flex: 1,  width: '100%' , paddingHorizontal: 25,
           paddingTop: 30,}}>
       <TouchableOpacity
           style={{height: 35, width: 35, borderRadius: 18,}}
@@ -50,7 +50,6 @@ function EditView({ navigation, route }) {
       </View>
       <View style={{
         width: '100%',
-        backgroundColor: 'white',
         flex: 5,
         marginBottom: 50,
         alignItems: 'center'
@@ -87,6 +86,7 @@ function EditView({ navigation, route }) {
 }
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: 'white',
     flex: 1,
   },
   button: {

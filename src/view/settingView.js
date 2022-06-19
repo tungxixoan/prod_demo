@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -8,6 +8,10 @@ import {
   TouchableOpacity,
 } from 'react-native';
 function SettingView({navigation}) {
+  const[theme, setTheme] = useState('light')
+  const toggleTheme = () =>{
+    setTheme(theme === 'light' ? 'dart' : 'light')
+  }
   return (
     <View style={styles.container}>
       <View
@@ -35,7 +39,11 @@ function SettingView({navigation}) {
             alignItems: 'center',
             justifyContent: 'center',
           }}>
-          <Text>Setting View</Text>
+          <Text style={{color: 'black'}} >Current theme: {theme}</Text>
+          <TouchableOpacity onPress={toggleTheme}>
+          <Text >Chang theme</Text>
+          </TouchableOpacity>
+          
         </View>
         <View
           style={{

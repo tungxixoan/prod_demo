@@ -16,6 +16,20 @@ function InputView({navigation}) {
   const dispatch = useDispatch()
 
   const handleSubmit = () =>{
+    if(!email.trim() && !name.trim()){
+      alert('Please Enter Information');
+      return;
+    }
+     if (!email.trim()) {
+      alert('Please Enter Email');
+      return;
+    }
+    if (!name.trim()) {
+      alert('Please Enter Name');
+      return;
+    }
+   
+    
     dispatch(updateInput(email, name))
     navigation.navigate('Home')
   }
