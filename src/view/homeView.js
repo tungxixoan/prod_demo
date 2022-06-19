@@ -10,6 +10,7 @@ function HomeView({navigation}) {
     navigation.navigate('Edit', {index: index});
   };
   const handleDelete = index => {
+    console.log(index)
     dispatch(deleteInfo(index))
   }
   // console.log('infos: ', infos);
@@ -63,7 +64,7 @@ function HomeView({navigation}) {
                   style={{height: 20, width: 20}}
                   source={require('../images/edit_icon.png')}></Image>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={()=>{handleDelete(index)}}>
                 <Image
                   style={{height: 20, width: 20}}
                   source={require('../images/delete_icon.png')}></Image>

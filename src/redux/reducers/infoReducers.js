@@ -37,9 +37,12 @@ export default function actionForReducer(state = initialState, payload) {
       
     }
     case DELETE_INFO:{
-      state[payload.index].splice(1,1)
+    //   console.log('stateIndex: ', state[payload.index]);
+    //   console.log(state);
+      state.splice(payload.index,1);
+     
     }
-    return [...state]
+    return [...state, ]
     default:
       return state;
   }

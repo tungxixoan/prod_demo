@@ -1,25 +1,26 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   View,
   Text,
+  Image,
   StyleSheet,
   TextInput,
   TouchableOpacity,
 } from 'react-native';
 
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { editInfo } from '../redux/actions/updateAction';
 
-function EditView({navigation, route}) {
+function EditView({ navigation, route }) {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
   const infos = useSelector(state => state.personalInfo);
-  const {index} = route.params;
+  const { index } = route.params;
   const dispatch = useDispatch();
   // console.log('items', itemEdit);
-  const handleEdit = () =>{
+  const handleEdit = () => {
     // console.log(index, email, name, address, phone)
     dispatch(editInfo(index, email, name, address, phone))
     navigation.navigate('Home')
@@ -33,42 +34,48 @@ function EditView({navigation, route}) {
     setPhone(itemEdit.phone)
 
   }, [index])
-  
+
   // console.log(mail, name);
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder={'Email'}
-        onChangeText={setEmail}
-        value={email}></TextInput>
-      <TextInput
-        style={styles.input}
-        onChangeText={setName}
-        placeholder="Full Name"
-        value={name}></TextInput>
-      <TextInput
-        style={styles.input}
-        placeholder="Adress"
-        onChangeText={setAddress}
-        value={address}></TextInput>
-      <TextInput
-        style={styles.input}
-        onChangeText={setPhone}
-        placeholder="Phone Number"
-        value={phone}></TextInput>
-      <View
-        style={{
-          flexDirection: 'row',
-          marginBottom: 50,
-          width: '80%',
-          justifyContent: 'space-between',
-        }}>
-        <TouchableOpacity
-          style={styles.button}
+      <View style={{flex: 1, backgroundColor: 'white', width: '100%' , paddingHorizontal: 25,
+          paddingTop: 30,}}>
+      <TouchableOpacity
+          style={{height: 35, width: 35, borderRadius: 18,}}
           onPress={() => navigation.goBack()}>
-          <Text style={styles.textSubmit}> Go Home</Text>
+          <Image
+            style={{height: 35, width: 35, borderRadius: 18}}
+            source={require('../images/back_icon.png')}></Image>
         </TouchableOpacity>
+      </View>
+      <View style={{
+        width: '100%',
+        backgroundColor: 'white',
+        flex: 5,
+        marginBottom: 50,
+        alignItems: 'center'
+        // justifyContent: 'space-between',
+      }}>
+        <TextInput
+          style={styles.input}
+          placeholder={'Email'}
+          onChangeText={setEmail}
+          value={email}></TextInput>
+        <TextInput
+          style={styles.input}
+          onChangeText={setName}
+          placeholder="Full Name"
+          value={name}></TextInput>
+        <TextInput
+          style={styles.input}
+          placeholder="Adress"
+          onChangeText={setAddress}
+          value={address}></TextInput>
+        <TextInput
+          style={styles.input}
+          onChangeText={setPhone}
+          placeholder="Phone Number"
+          value={phone}></TextInput>
         <TouchableOpacity
           style={styles.button}
           onPress={handleEdit}>
@@ -81,24 +88,23 @@ function EditView({navigation, route}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   button: {
     backgroundColor: '#41BF24',
     height: 35,
-    width: '35%',
+    width: '30%',
     paddingHorizontal: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 15,
+    borderRadius: 10,
   },
   input: {
     borderWidth: 1,
     borderColor: 'red',
     borderRadius: 10,
     height: 40,
-    width: '50%',
+    width: '60%',
+    // marginHorizontal: '20%',
     backgroundColor: 'white',
     color: 'black',
     paddingHorizontal: 10,

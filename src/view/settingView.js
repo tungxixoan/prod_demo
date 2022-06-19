@@ -17,7 +17,7 @@ function SettingView({navigation}) {
           paddingTop: 30,
         }}>
         <TouchableOpacity
-          style={{height: 35, width: 35, borderRadius: 18}}
+          style={{height: 35, width: 35, borderRadius: 18,}}
           onPress={() => navigation.goBack()}>
           <Image
             style={{height: 35, width: 35, borderRadius: 18}}

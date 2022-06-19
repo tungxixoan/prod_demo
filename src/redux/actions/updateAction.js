@@ -72,7 +72,8 @@ export const deleteInfo = (index) => async dispatch => {
 await new Promise ((resolve, reject)=> {
   setTimeout(() => {
     resolve();
-  },500)
+  },500);
+  console.log('delete info: ' , index)
 });
 dispatch({
   type: DELETE_INFO,

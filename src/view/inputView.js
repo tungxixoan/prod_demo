@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     width: '25%',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 15,
+    borderRadius: 10,
   },
   textSubmit: {
     color: 'black',
