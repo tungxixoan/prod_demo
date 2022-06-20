@@ -25,9 +25,9 @@ function EditView({ navigation, route }) {
   }
 
   useEffect(() => {
-    console.log(infos);
+    // console.log(infos);
     const itemEdit = infos[index]
-    console.log('itemEdit: ',itemEdit);
+    // console.log('itemEdit: ',itemEdit);
     setEmail(itemEdit.email)
     setName(itemEdit.name)
     setAddress(itemEdit.address)

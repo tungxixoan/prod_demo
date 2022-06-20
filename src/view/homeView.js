@@ -12,14 +12,13 @@ import {deleteInfo} from '../redux/actions/updateAction';
 
 function HomeView({navigation}) {
   const infos = useSelector(state => state.personalInfo);
-  console.log('infors: ', infos);
+  // console.log('infors: ', infos);
   const dispatch = useDispatch();
   const handleEdit = index => {
-    console.log('home: ', index);
+    // console.log('home: ', index);
     navigation.navigate('Edit', {index: index});
   };
   const handleDelete = index => {
-    console.log(index);
     dispatch(deleteInfo(index));
   };
 
@@ -117,6 +116,7 @@ function HomeView({navigation}) {
         renderItem={({item, index}) => (
           <GridView
             index={index}
+            // item={item}
             name={item.name}
             email={item.email}
             address={item.address}
