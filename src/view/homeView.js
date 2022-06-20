@@ -1,78 +1,130 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  FlatList,
+} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import { deleteInfo } from '../redux/actions/updateAction';
+import {deleteInfo} from '../redux/actions/updateAction';
 
 function HomeView({navigation}) {
   const infos = useSelector(state => state.personalInfo);
+  console.log('infors: ', infos);
   const dispatch = useDispatch();
   const handleEdit = index => {
+    console.log('home: ', index);
     navigation.navigate('Edit', {index: index});
   };
   const handleDelete = index => {
-    console.log(index)
-    dispatch(deleteInfo(index))
-  }
-  // console.log('infos: ', infos);
+    console.log(index);
+    dispatch(deleteInfo(index));
+  };
+
+  const GridView = ({index, email, name, address, phone}) => (
+    <View
+      key={index}
+      style={{
+        flex: 1,
+        margin: 10,
+        padding: 5,
+        width: '50%',
+        backgroundColor: '#99CCFF',
+        alignItems: 'center',
+        borderWidth: 3,
+        borderRadius: 6,
+        borderColor: 'red',
+      }}>
+      <View style={{width: '100%'}}>
+        <View style={{height: 40}}>
+          <Text style={styles.fontText}>
+            Email: {email}
+          </Text>
+        </View>
+        <View style={{height: 40}}>
+          <Text style={styles.fontText}>
+            Name: {name}
+          </Text>
+        </View>
+        <View style={{height: 40}}>
+          <Text style={styles.fontText}>
+            Address: {address}
+          </Text>
+        </View>
+        <View style={{height: 40}}>
+          <Text style={styles.fontText}>
+            Phone: {phone}
+          </Text>
+        </View>
+      </View>
+      <View
+        style={{
+          width: '50%',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}>
+        <TouchableOpacity onPress={() => handleEdit(index)}>
+          <Image
+            style={{height: 20, width: 20}}
+            source={require('../images/edit_icon.png')}></Image>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            handleDelete(index);
+          }}>
+          <Image
+            style={{height: 20, width: 20}}
+            source={require('../images/delete_icon.png')}></Image>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
   return (
     <View style={styles.container}>
       <View
         style={{
-          flex: 1,
           paddingTop: 30,
           flexDirection: 'row',
           paddingHorizontal: 20,
           width: '100%',
+          height: '16%',
           justifyContent: 'space-between',
         }}>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.goBack()}>
           <Image
-            style={{height: 35, width: 35, borderRadius: 18,}}
+            style={{height: 35, width: 35, borderRadius: 18}}
             source={require('../images/add_icon.png')}></Image>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate('Setting')}>
-          <Image style={{height: 35, width: 35, borderRadius: 18}} source={require('../images/setting_icon.png')} resizeMode='cover' ></Image>
+          <Image
+            style={{height: 35, width: 35, borderRadius: 18}}
+            source={require('../images/setting_icon.png')}
+            resizeMode="cover"></Image>
         </TouchableOpacity>
       </View>
-      <View
+      <FlatList
         style={{
-          flex: 5,
-          justifyContent: 'flex-start',
           width: '100%',
-          paddingTop: '25%',
-          alignItems: 'center',
-        }}>
-        {infos.map((info, index) => {
-          return (
-            <View
-              key={index}
-              style={{
-                flexDirection: 'row',
-                marginBottom: 10,
-                width: '85%',
-              }}>
-              <Text style={{flex: 6, color: 'black', fontWeight: '500'}}>
-                Email: {info.email} - Name: {info.name} - Address:{' '}
-                {info.address} - Phone: {info.phone}
-              </Text>
-              <TouchableOpacity onPress={() => handleEdit(index)}>
-                <Image
-                  style={{height: 20, width: 20}}
-                  source={require('../images/edit_icon.png')}></Image>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={()=>{handleDelete(index)}}>
-                <Image
-                  style={{height: 20, width: 20}}
-                  source={require('../images/delete_icon.png')}></Image>
-              </TouchableOpacity>
-            </View>
-          );
-        })}
-      </View>
+        }}
+        data={infos}
+        renderItem={({item, index}) => (
+          <GridView
+            index={index}
+            name={item.name}
+            email={item.email}
+            address={item.address}
+            phone={item.phone}
+          />
+        )}
+        numColumns={2}
+      />
     </View>
   );
 }
@@ -80,37 +132,14 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     flex: 1,
-    // justifyContent: 'center',
-    alignItems: 'center',
   },
   button: {
-    backgroundColor: '#41BF24',
     height: 35,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 18,
-    
   },
-  input: {
-    borderWidth: 1,
-    borderColor: 'red',
-    borderRadius: 10,
-    height: 40,
-    width: 250,
-    paddingHorizontal: 10,
-    backgroundColor: 'white',
-    color: 'black',
-    paddingHorizontal: 10,
-    marginBottom: 20,
-  },
-  textSubmit: {
-    color: 'black',
-    fontWeight: '500',
-    fontSize: 18,
-  },
-  fontText: {
-    fontSize: 22,
-    color: 'black',
-  },
+  
+  fontText: {color: 'black', fontWeight: '500'},
 });
 export default HomeView;

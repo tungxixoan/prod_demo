@@ -19,15 +19,15 @@ function EditView({ navigation, route }) {
   const infos = useSelector(state => state.personalInfo);
   const { index } = route.params;
   const dispatch = useDispatch();
-  // console.log('items', itemEdit);
   const handleEdit = () => {
-    // console.log(index, email, name, address, phone)
     dispatch(editInfo(index, email, name, address, phone))
     navigation.navigate('Home')
   }
 
   useEffect(() => {
+    console.log(infos);
     const itemEdit = infos[index]
+    console.log('itemEdit: ',itemEdit);
     setEmail(itemEdit.email)
     setName(itemEdit.name)
     setAddress(itemEdit.address)
@@ -35,7 +35,6 @@ function EditView({ navigation, route }) {
 
   }, [index])
 
-  // console.log(mail, name);
   return (
     <View style={styles.container}>
       <View style={{flex: 1,  width: '100%' , paddingHorizontal: 25,
@@ -50,10 +49,10 @@ function EditView({ navigation, route }) {
       </View>
       <View style={{
         width: '100%',
-        flex: 5,
+        flex: 10,
         marginBottom: 50,
-        alignItems: 'center'
-        // justifyContent: 'space-between',
+        alignItems: 'center',
+        justifyContent: 'center'
       }}>
         <TextInput
           style={styles.input}
@@ -104,7 +103,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: 40,
     width: '60%',
-    // marginHorizontal: '20%',
     backgroundColor: 'white',
     color: 'black',
     paddingHorizontal: 10,

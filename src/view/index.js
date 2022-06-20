@@ -11,9 +11,6 @@ import { store } from '../redux/store';
 const Stack = createNativeStackNavigator();
 function RootView() {
   return (
-    // <InputView/>
-    //<HomeView/>
-    // <SettingView/>
     <Provider store = {store}>
         <NavigationContainer>
         <Stack.Navigator
